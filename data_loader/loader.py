@@ -18,16 +18,18 @@ class Loader:
 
 
     def divide_test_train(self):
-        input_size = self.dataframe.size
-        test_size = input_size *  ( self.percent_test / 100 )
-        x_training =  self.dataframe.drop(self.output_column_name,axis=1).values
+        input_size = len(self.dataframe.index)
+        test_size = int(input_size *  ( self.percent_test / 100 ))
+        train_size = input_size - test_size
+        x_training =  self.dataframe.drop(self.output_column_name,axis=1).iloc[:train_size].values
         print(x_training.shape)
-        x_test = self.dataframe.drop(self.output_column_name,axis=1).values
+        x_test = self.dataframe.drop(self.output_column_name,axis=1).iloc[-test_size:].values
         print(x_test.shape)
 
-        y_training = self.dataframe[[self.output_column_name]].values[test_size:]
-        y_test = self.dataframe[[self.output_column_name]].values[:test_size]
-
+        y_training = self.dataframe[[self.output_column_name]].iloc[:train_size].values
+        print(y_training.shape)
+        y_test = self.dataframe[[self.output_column_name]].iloc[-test_size:].values
+        print(y_test.shape)
 
 
 

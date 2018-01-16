@@ -31,6 +31,8 @@ class Loader:
         y_test = self.dataframe[[self.output_column_name]].iloc[-test_size:].values
         print(y_test.shape)
 
+        return x_training, x_test, y_training, y_test
+
 
 
 

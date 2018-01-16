@@ -1,6 +1,6 @@
 from sklearn.preprocessing import MinMaxScaler
 
-def scale_value(x_train, x_test, y_train, y_test, feature_range_start = 0, feature_range_end = 1, scaler_type = 'MinMaxScaler' )
+def scale_data(x_train, x_test, y_train, y_test, feature_range_start = 0, feature_range_end = 1, scaler_type = 'MinMaxScaler' )
     scaler = MinMaxScaler(feature_range=(feature_range_start,feature_range_end))
 
     x_scaled_training = scaler.fit_transform(x_train)

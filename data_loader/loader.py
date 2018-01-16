@@ -13,15 +13,17 @@ class Loader:
 
 
     def read_file(self):
-        self.dataframe = pd.read_csv(self.input_file,dtype=float)
-        self.dataframe = self.dataframe[self.input_column_names,self.output_column_name]
+        self.dataframe = pd.read_excel(self.input_file,index_col=None)
+
 
 
     def divide_test_train(self):
         input_size = self.dataframe.size
         test_size = input_size *  ( self.percent_test / 100 )
-        x_training =  self.dataframe.drop(self.output_column_name,axis=1).values[test_size:]
-        x_test = self.dataframe.drop(self.output_column_name,axis=1).values[:test_size]
+        x_training =  self.dataframe.drop(self.output_column_name,axis=1).values
+        print(x_training.shape)
+        x_test = self.dataframe.drop(self.output_column_name,axis=1).values
+        print(x_test.shape)
 
         y_training = self.dataframe[[self.output_column_name]].values[test_size:]
         y_test = self.dataframe[[self.output_column_name]].values[:test_size]
